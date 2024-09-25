@@ -34,36 +34,33 @@ class StoreHomePage extends StatefulWidget {
 }
 
 class _StoreHomePageState extends State<StoreHomePage> {
- void _onViewDirectionPressed() async {
-  const String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=Your+Location";
-  Uri url = Uri.parse(googleMapsUrl);  // Parse the URL properly
+  void _onViewDirectionPressed() async {
+    const String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=Your+Location";
+    Uri url = Uri.parse(googleMapsUrl);
 
-  if (!await canLaunchUrl(url)) {
-    // If the URL cannot be launched, show an alert
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text("Error"),
-        content: Text("Could not open Google Maps."),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text("OK"),
-          ),
-        ],
-      ),
-    );
+    if (!await canLaunchUrl(url)) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Error"),
+          content: Text("Could not open Google Maps."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
   }
-}
-
-
 
   void _navigateToLuxaryPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>LuxuriousTilesScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => LuxuriousTilesScreen()));
   }
 
   void _navigateToDeliveredPage() {
-    Navigator.push(context, MaterialPageRoute(builder:(context)=>delivery() ));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => delivery()));
   }
 
   @override
@@ -111,111 +108,112 @@ class _StoreHomePageState extends State<StoreHomePage> {
               leading: Icon(Icons.details),
               title: Text('About us'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>AboutUsScreen() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUsScreen()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.book),
-              title: Text('Appointement'),
+              title: Text('Appointment'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Book() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Book()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.online_prediction),
-              title: Text('consult'),
+              title: Text('Consult'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>BookingForm() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BookingForm()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.contact_emergency),
-              title: Text('Conatct'),
+              title: Text('Contact'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>ContactUsApp() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsApp()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.feedback),
               title: Text('Feedback'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>ToDoApp() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ToDoApp()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.home),
               title: Text('Product'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>Product() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Product()));
               },
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.list),
               title: Text('Tiles'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder:(context)=>TilesApp() ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TilesApp()));
               },
             ),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Categories",
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _buildCategoryChip("Fashion"),
-                SizedBox(width: 8),
-                _buildCategoryChip("Luxary"),
-                SizedBox(width: 8),
-                _buildCategoryChip("Model tiles"),
-              ],
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildIconButton(
-                  icon: Icons.check_box,
-                  label: "Luxary",
-                  onTap: _navigateToLuxaryPage,
-                ),
-                SizedBox(width: 16),
-                _buildIconButton(
-                  icon: Icons.delivery_dining,
-                  label: "Delivered",
-                  onTap: _navigateToDeliveredPage,
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Container(
-              color: Colors.white,
-              height: 200,
-              child: Image.asset(
-                'assets/map.png', // Placeholder map
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Categories",
+                style: TextStyle(color: Colors.white, fontSize: 18),
               ),
-            ),
-            SizedBox(height: 16),
-            Center(
-              child: ElevatedButton(
-                onPressed: _onViewDirectionPressed,
-                child: Text("View direction"),
-                style: ElevatedButton.styleFrom(
-                  iconColor: Colors.grey, // Button color
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _buildCategoryChip("Fashion"),
+                  SizedBox(width: 8),
+                  _buildCategoryChip("Luxary"),
+                  SizedBox(width: 8),
+                  _buildCategoryChip("Model tiles"),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildIconButton(
+                    icon: Icons.check_box,
+                    label: "Luxary",
+                    onTap: _navigateToLuxaryPage,
+                  ),
+                  SizedBox(width: 16),
+                  _buildIconButton(
+                    icon: Icons.delivery_dining,
+                    label: "Delivered",
+                    onTap: _navigateToDeliveredPage,
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Column(
+                  children: <Widget>[
+                    Image.asset('assets/map.png'),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 16),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _onViewDirectionPressed,
+                  child: Text("View direction"),
+                  style: ElevatedButton.styleFrom(
+                    iconColor: Color(0xFFE6E623), // Button color
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -230,25 +228,24 @@ class _StoreHomePageState extends State<StoreHomePage> {
   }
 
   Widget _buildIconButton({IconData? icon, String? label, VoidCallback? onTap}) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Container(
-      width: 140,
-      height: 140,
-      decoration: BoxDecoration(
-        color: Color(0xFFE6E623),
-        borderRadius: BorderRadius.circular(16),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 140,
+        height: 140,
+        decoration: BoxDecoration(
+          color: Color(0xFFE6E623),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 50, color: Colors.black),
+            SizedBox(height: 10),
+            Text(label ?? '', style: TextStyle(color: Colors.black, fontSize: 18)),
+          ],
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 50, color: Colors.black),
-          SizedBox(height: 10),
-          Text(label ?? '', style: TextStyle(color: Colors.black, fontSize: 18)), // Default to empty string if null
-        ],
-      ),
-    ),
-  );
-}
-
+    );
+  }
 }
